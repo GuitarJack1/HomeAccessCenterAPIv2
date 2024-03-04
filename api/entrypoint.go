@@ -319,15 +319,24 @@ func getAverages(c *gin.Context) {
 	averages := make([]string, 0)
 
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
-		classArr := strings.Split(strings.Join(strings.Fields(e.ChildText("div.sg-header")), " "), " ")
-		class := strings.Join(classArr[3:len(classArr)-3], " ")
-		classes = append(classes, class)
-		if len(e.ChildText("span.sg-header-heading")) == 0 {
-			averages = append(averages, "No Average")
+		if len(e.ChildText("div.sg-header")) == 0 {
+			classArr := strings.Split(strings.Join(strings.Fields(e.DOM.Find("a.sg-header-heading").Text()), " "), " ")
+			class := strings.Join(classArr[3:len(classArr)-3], " ")
+			classes = append(classes, class)
+			averages = append(averages, "0")
+
 		} else {
-			average := e.ChildText("span.sg-header-heading")[18:]
-			averages = append(averages, average)
+			classArr := strings.Split(strings.Join(strings.Fields(e.ChildText("div.sg-header")), " "), " ")
+			class := strings.Join(classArr[3:len(classArr)-3], " ")
+			classes = append(classes, class)
+			if len(e.ChildText("span.sg-header-heading")) == 0 {
+				averages = append(averages, "No Average")
+			} else {
+				average := e.ChildText("span.sg-header-heading")[18:]
+				averages = append(averages, average)
+			}
 		}
+
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
