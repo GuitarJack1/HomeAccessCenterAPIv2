@@ -319,8 +319,9 @@ func getAverages(c *gin.Context) {
 	averages := make([]string, 0)
 
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
-		fmt.Print(e.ChildText("div.sg-header"))
-		if len(e.ChildText("div.sg-header")) == 0 {
+		var childText = e.ChildText("div.sg-header")
+		fmt.Print(childText)
+		if len(childText) == 0 {
 			classArr := strings.Split(strings.Join(strings.Fields(e.DOM.Find("a.sg-header-heading").Text()), " "), " ")
 			class := strings.Join(classArr[3:len(classArr)-3], " ")
 			classes = append(classes, class)
