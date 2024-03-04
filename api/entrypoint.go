@@ -322,8 +322,12 @@ func getAverages(c *gin.Context) {
 		classArr := strings.Split(strings.Join(strings.Fields(e.ChildText("div.sg-header")), " "), " ")
 		class := strings.Join(classArr[3:len(classArr)-3], " ")
 		classes = append(classes, class)
-		average := e.ChildText("span.sg-header-heading")[18:]
-		averages = append(averages, average)
+		if len(e.ChildText("span.sg-header-heading")) == 0 {
+			averages = append(averages, "No Average")
+		} else {
+			average := e.ChildText("span.sg-header-heading")[18:]
+			averages = append(averages, average)
+		}
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
@@ -477,7 +481,7 @@ func getProgressReport(c *gin.Context) {
 	c.JSON(200, finalData)
 }
 
-func getTranscript(c *gin.Context){
+func getTranscript(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
 	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
@@ -510,7 +514,6 @@ func getTranscript(c *gin.Context){
 			}
 		})
 
-		
 		finaldata := make([][]string, 0)
 		data := make([]string, 0)
 
@@ -533,7 +536,7 @@ func getTranscript(c *gin.Context){
 				semester.Set("credits", el.Text)
 			}
 		})
-		
+
 		year, _ := semester.Get("year")
 		semesterNum, _ := semester.Get("semester")
 		title := year.(string) + " - Semester " + semesterNum.(string)
@@ -559,7 +562,7 @@ func getTranscript(c *gin.Context){
 				if strings.Contains(el2.Attr("id"), "GPAQuartile") {
 					transcript.Set("quartile", el2.Text)
 				}
-				
+
 			})
 			transcript.Set(text, value)
 		})
@@ -569,14 +572,14 @@ func getTranscript(c *gin.Context){
 		c.JSON(200, transcript)
 	})
 
-	err = collector.Visit(link+"/HomeAccess/Content/Student/Transcript.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/Transcript.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
 	}
 }
 
-func getRank(c *gin.Context){
+func getRank(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
 	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
@@ -610,7 +613,7 @@ func getRank(c *gin.Context){
 				if strings.Contains(el2.Attr("id"), "GPAQuartile") {
 					transcript.Set("quartile", el2.Text)
 				}
-				
+
 			})
 			transcript.Set(text, value)
 		})
@@ -620,7 +623,7 @@ func getRank(c *gin.Context){
 		c.JSON(200, transcript)
 	})
 
-	err = collector.Visit(link+"/HomeAccess/Content/Student/Transcript.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/Transcript.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
