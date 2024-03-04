@@ -326,11 +326,9 @@ func getAverages(c *gin.Context) {
 			averages = append(averages, "0")
 		} else {*/
 		classArr := strings.Split(strings.Join(strings.Fields(e.ChildText("div.sg-header")), " "), " ")
-		class := strings.Join(classArr[3:len(classArr)-3], " ")
-		classes = append(classes, class)
-		if len(e.ChildText("span.sg-header-heading")) == 0 {
-			averages = append(averages, "No Average")
-		} else {
+		class := strings.Join(classArr[:], " ")
+		if len(class) > 0 {
+			classes = append(classes, class)
 			average := e.ChildText("span.sg-header-heading")[18:]
 			averages = append(averages, average)
 		}
