@@ -7,7 +7,7 @@
 		}
 	],
 	  "functions": {
-	    "app/api/entrypoint.go": {
+	    "api/entrypoint.go": {
 	      "maxDuration": 30
 	    }
 	  }
