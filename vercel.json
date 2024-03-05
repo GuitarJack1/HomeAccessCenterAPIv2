@@ -5,7 +5,7 @@
 			"source":"/(.*)",
 			"destination":"/api/entrypoint.go"
 		}
-	]
+	],
 	{
 	  "functions": {
 	    "app/api/**/*": {
