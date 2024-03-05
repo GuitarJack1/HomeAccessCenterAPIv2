@@ -6,5 +6,12 @@
 			"destination":"/api/entrypoint.go"
 		}
 	]
+	{
+	  "functions": {
+	    "app/api/**/*": {
+	      "maxDuration": 30 // All functions can run for a maximum of 5 seconds
+	    }
+	  }
+	}
 
 }
