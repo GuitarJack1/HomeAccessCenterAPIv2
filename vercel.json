@@ -6,12 +6,10 @@
 			"destination":"/api/entrypoint.go"
 		}
 	],
-	{
 	  "functions": {
 	    "app/api/**/*": {
 	      "maxDuration": 30
 	    }
 	  }
-	}
 
 }
