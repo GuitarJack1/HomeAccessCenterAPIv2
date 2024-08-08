@@ -159,7 +159,7 @@ func getName(c *gin.Context) {
 	})
 
 	// Perform the scraping operation
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Classes/Classwork")
+	err = collector.Visit(link + "/HomeAccess/Classes/Classwork")
 	if err != nil {
 		// Handle the scraping error
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
@@ -245,7 +245,7 @@ func getAssignments(c *gin.Context) {
 		c.JSON(200, ret)
 	})
 
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Content/Student/Assignments.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/Assignments.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
@@ -293,7 +293,7 @@ func getInfo(c *gin.Context) {
 		c.JSON(200, ret)
 	})
 
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Content/Student/Registration.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/Registration.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
@@ -352,7 +352,7 @@ func getAverages(c *gin.Context) {
 		c.JSON(200, ret)
 	})
 
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Content/Student/Assignments.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/Assignments.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
@@ -386,7 +386,7 @@ func getClasses(c *gin.Context) {
 		c.JSON(200, classes)
 	})
 
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Content/Student/Assignments.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/Assignments.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
@@ -437,7 +437,7 @@ func getReport(c *gin.Context) {
 		c.JSON(200, finalData)
 	})
 
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Content/Student/ReportCards.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/ReportCards.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
@@ -473,7 +473,7 @@ func getProgressReport(c *gin.Context) {
 		row = nil
 	})
 
-	err = collector.Visit("https://homeaccess.katyisd.org/HomeAccess/Content/Student/InterimProgress.aspx")
+	err = collector.Visit(link + "/HomeAccess/Content/Student/InterimProgress.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
 		return
