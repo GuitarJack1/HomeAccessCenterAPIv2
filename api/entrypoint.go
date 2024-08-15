@@ -139,7 +139,7 @@ func getName(c *gin.Context) {
 	// Call the loginHandler to perform the login process
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -170,7 +170,7 @@ func getName(c *gin.Context) {
 func getAssignments(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -255,7 +255,7 @@ func getAssignments(c *gin.Context) {
 func getInfo(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -303,7 +303,7 @@ func getInfo(c *gin.Context) {
 func getAverages(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -362,7 +362,7 @@ func getAverages(c *gin.Context) {
 func getClasses(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -396,7 +396,7 @@ func getClasses(c *gin.Context) {
 func getReport(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -447,7 +447,7 @@ func getReport(c *gin.Context) {
 func getProgressReport(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -496,7 +496,7 @@ func getProgressReport(c *gin.Context) {
 func getTranscript(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
@@ -594,7 +594,7 @@ func getTranscript(c *gin.Context) {
 func getRank(c *gin.Context) {
 	username := c.Query("user")
 	password := c.Query("pass")
-	link := c.DefaultQuery("link", "https://homeaccess.katyisd.org")
+	link := c.DefaultQuery("link", "https://home-access.cfisd.net")
 	collector, err := loginHandler(username, password, link)
 	if err != nil {
 		// Handle the login error
