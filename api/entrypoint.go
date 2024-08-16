@@ -73,7 +73,7 @@ func loginHandler(username, password string, link string) (*colly.Collector, err
 	var loginLink string = link + "/HomeAccess/Account/LogOn?ReturnUrl=%2fHomeAccess%2f"
 
 	c := colly.NewCollector()
-	c.UserAgent = ""Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36""
+	c.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
 
 	// Create a login data map to store login data
 	loginData := map[string]string{
