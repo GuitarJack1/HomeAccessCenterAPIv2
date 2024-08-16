@@ -70,7 +70,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 func loginHandler(username, password string, link string) (*colly.Collector, error) {
 	link = strings.TrimSuffix(link, "/")
-	var loginLink string = link + "/HomeAccess/Account/LogOn"
+	var loginLink string = link + "/HomeAccess/Account/LogOn?ReturnUrl=%2fHomeAccess%2f"
 
 	c := colly.NewCollector()
 	c.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36"
