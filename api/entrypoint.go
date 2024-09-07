@@ -252,8 +252,8 @@ func getAssignments(c *gin.Context) {
 	classes := make([]string, 0)
 	averages := make([]string, 0)
 	
-	assignments := make([][]string, 0)
-	currAssignments := make([]string, 0)
+	assignments := make([][]orderedmap, 0)
+	currAssignments := make([]orderedmap, 0)
 
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
 		/*if len(e.ChildText("div.sg-header")) == 0 {
@@ -279,9 +279,13 @@ func getAssignments(c *gin.Context) {
 
 		currAssignments = make([]string, 0)
 		e.ForEach("div.sg-content-grid > table.sg-asp-table > tbody > tr.sg-asp-table-data-row > td > a", func(_ int, el *colly.HTMLElement) {
+			assignment := orderedmap.New()
+			
 			assignmentsText := strings.TrimSpace(el.Text)
-			assignmentsText = assignmentsText[2:len(assignmentsText)-2]
-			currAssignments = append(currAssignments, assignmentsText)
+			
+			assignment.Set("name", assignmentsText)
+			
+			currAssignments = append(currAssignments, assignment)
 		})
 		assignments = append(assignments, currAssignments)
 	})
