@@ -293,7 +293,7 @@ func getAssignments(c *gin.Context) {
 			assignmentsArr := assignments[i]
 
 			retInside.Set("average", average)
-			retInside.Set("assignments", assignmentsText)
+			retInside.Set("assignments", assignmentsArr)
 			
 			ret.Set(classes[i], retInside)
 		}
