@@ -281,7 +281,7 @@ func getAssignments(c *gin.Context) {
 			assignmentsText := el.Text
 			currAssignments = append(currAssignments, assignmentsText)
 		})
-		currAssignments = append(assignments, currAssignments)
+		assignments = append(assignments, currAssignments)
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
