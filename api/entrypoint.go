@@ -182,7 +182,7 @@ func getAssignments(c *gin.Context) {
 		return
 	}
 
-	classes := make([]string, 0)
+	/*classes := make([]string, 0)
 	averages := make([]string, 0)
 
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
@@ -243,8 +243,12 @@ func getAssignments(c *gin.Context) {
 		}
 
 		c.JSON(200, ret)
-	})
+	})*/
 
+	collector.OnHTML("div.AssignmentClass", func(h *colly.HTMLElement) {
+		fmt.Println(h.Text)
+	})
+	
 	err = collector.Visit(link + "/HomeAccess/Content/Student/Assignments.aspx")
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Failed to scrape data"})
