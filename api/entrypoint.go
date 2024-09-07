@@ -251,6 +251,7 @@ func getAssignments(c *gin.Context) {
 
 	classes := make([]string, 0)
 	averages := make([]string, 0)
+	assignments := make([]string, 0)
 
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
 		/*if len(e.ChildText("div.sg-header")) == 0 {
@@ -274,6 +275,8 @@ func getAssignments(c *gin.Context) {
 		}
 		//}
 
+		assignmentsText := e.ChildText("div.sg-content-grid")
+		assignments = append(assignments, assignmentsText)
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
