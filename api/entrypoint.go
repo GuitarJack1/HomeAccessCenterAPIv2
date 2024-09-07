@@ -276,13 +276,9 @@ func getAssignments(c *gin.Context) {
 		//}
 
 		e.ForEach("div.sg-content-grid > table.sg-asp-table > tbody > tr.sg-asp-table-data-row > td > a", func(_ int, el *colly.HTMLElement) {
-			assignmentsText := el.text
+			assignmentsText := el.Text
 			assignments = append(assignments, assignmentsText)
 		})
-	
-		
-		assignmentsText := e.ChildText("div.sg-content-grid")
-		assignments = append(assignments, assignmentsText)
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
