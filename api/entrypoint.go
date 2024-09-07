@@ -279,8 +279,13 @@ func getAssignments(c *gin.Context) {
 	collector.OnScraped(func(r *colly.Response) {
 		ret := orderedmap.New()
 		for i := 0; i < len(classes); i++ {
+			retInside := orderedmap.New()
+			
 			average := averages[i]
-			ret.Set(classes[i], average)
+
+			retInside.Set("average", average)
+			
+			ret.Set(classes[i], retInside)
 		}
 
 		c.JSON(200, ret)
