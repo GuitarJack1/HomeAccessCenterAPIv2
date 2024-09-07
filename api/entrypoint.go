@@ -245,8 +245,54 @@ func getAssignments(c *gin.Context) {
 		c.JSON(200, ret)
 	})*/
 
-	collector.OnHTML("div.AssignmentClass", func(h *colly.HTMLElement) {
-		c.JSON(200, gin.H{"name": h.Text})
+	/*collector.OnHTML("div.AssignmentClass div.sg-content-grid table.sg-asp-table", func(h *colly.HTMLElement) {
+		c.JSON(200, gin.H{"data": h.Text})
+	})*/
+
+	classes := make([]string, 0)
+	averages := make([]string, 0)
+	assignments := make([]string, 0)
+
+	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
+		/*if len(e.ChildText("div.sg-header")) == 0 {
+			classArr := strings.Split(strings.Join(strings.Fields(e.DOM.Find("a.sg-header-heading").Text()), " "), " ")
+			class := strings.Join(classArr[3:len(classArr)-3], " ")
+			classes = append(classes, class)
+			averages = append(averages, "0")
+		} else {*/
+		classArr := strings.Split(strings.Join(strings.Fields(e.ChildText("div.sg-header")), " "), " ")
+		class := strings.Join(classArr[:], " ")
+		if len(class) > 0 {
+
+			if len(e.ChildText("span.sg-header-heading")) == 0 {
+				classes = append(classes, class)
+				averages = append(averages, "No Average")
+			} else {
+				classes = append(classes, strings.Join(classArr[:len(classArr)-3], " "))
+				average := e.ChildText("span.sg-header-heading")[18:]
+				averages = append(averages, average)
+			}
+		}
+		//}
+
+		thisAssignments := e.ChildText("div.sg-content-grid")
+		assignments = append(assignments, thisAssignments)
+	})
+
+	collector.OnScraped(func(r *colly.Response) {
+		ret := orderedmap.New()
+		for i := 0; i < len(classes); i++ {
+			retInside := make(map[string]interface{}))
+			average := averages[i]
+			assignmentText := assignments[i]
+
+			retInside["average"] = average
+			retInside["assignments"] = assignmentText
+			
+			ret.Set(classes[i], retInside)
+		}
+
+		c.JSON(200, ret)
 	})
 	
 	err = collector.Visit(link + "/HomeAccess/Content/Student/Assignments.aspx")
