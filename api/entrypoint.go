@@ -246,7 +246,7 @@ func getAssignments(c *gin.Context) {
 	})*/
 
 	collector.OnHTML("div.AssignmentClass", func(h *colly.HTMLElement) {
-		fmt.Println(h.Text)
+		c.JSON(200, gin.H{"name": h.Text})
 	})
 	
 	err = collector.Visit(link + "/HomeAccess/Content/Student/Assignments.aspx")
