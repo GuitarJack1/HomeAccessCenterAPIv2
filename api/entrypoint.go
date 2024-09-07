@@ -276,7 +276,7 @@ func getAssignments(c *gin.Context) {
 		//}
 
 		e.ForEach("div.sg-content-grid > table.sg-asp-table > tbody > tr.sg-asp-table-data-row > td > a", func(_ int, el *colly.HTMLElement) {
-			assignmentsText := e.Attr("title")
+			assignmentsText := el.Attr("title")
 			assignments = append(assignments, assignmentsText)
 		})
 	
