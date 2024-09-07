@@ -290,10 +290,10 @@ func getAssignments(c *gin.Context) {
 			retInside := orderedmap.New()
 			
 			average := averages[i]
-			assignmentsArr := assignments[i]
+			//assignmentsArr := assignments[i]
 
 			retInside.Set("average", average)
-			retInside.Set("assignments", assignmentsArr)
+			//retInside.Set("assignments", assignmentsArr)
 			
 			ret.Set(classes[i], retInside)
 		}
