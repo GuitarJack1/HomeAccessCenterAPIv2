@@ -251,7 +251,6 @@ func getAssignments(c *gin.Context) {
 
 	classes := make([]string, 0)
 	averages := make([]string, 0)
-	//assignments := make([]string, 0)
 
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
 		/*if len(e.ChildText("div.sg-header")) == 0 {
@@ -275,21 +274,13 @@ func getAssignments(c *gin.Context) {
 		}
 		//}
 
-		//thisAssignments := e.ChildText("div.sg-content-grid")
-		//assignments = append(assignments, thisAssignments)
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
 		ret := orderedmap.New()
 		for i := 0; i < len(classes); i++ {
-			retInside := make(map[string]interface{}))
 			average := averages[i]
-			//assignmentText := assignments[i]
-
-			retInside["average"] = average
-			//retInside["assignments"] = assignmentText
-			
-			ret.Set(classes[i], retInside)
+			ret.Set(classes[i], average)
 		}
 
 		c.JSON(200, ret)
