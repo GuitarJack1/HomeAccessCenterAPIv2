@@ -277,7 +277,7 @@ func getAssignments(c *gin.Context) {
 		}
 		//}
 
-		currAssignments = make([]string, 0)
+		currAssignments = make([][]string, 0)
 		e.ForEach("div.sg-content-grid > table.sg-asp-table > tbody > tr.sg-asp-table-data-row > td > a", func(_ int, el *colly.HTMLElement) {
 			assignment := make([]string, 0)
 			
