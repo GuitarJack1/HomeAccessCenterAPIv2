@@ -284,7 +284,9 @@ func getAssignments(c *gin.Context) {
 			selection := el.DOM
 			childNodes := selection.Children().Nodes
 
-			assignmentsText := strings.TrimSpace(selection.FindNodes(childNodes[3]).Text())
+			assignmentTextNode := selection.FindNodes(childNodes[2])
+			assignmentTextChildren := assignmentTextNode.Children().Nodes
+			assignmentsText := strings.TrimSpace(assignmentTextNode.FindNodes(assignmentTextChildren[0]).Text())
 			
 			assignment = append(assignment, assignmentsText)
 			
