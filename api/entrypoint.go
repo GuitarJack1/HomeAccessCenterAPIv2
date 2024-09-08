@@ -278,10 +278,13 @@ func getAssignments(c *gin.Context) {
 		//}
 
 		currAssignments = make([][]string, 0)
-		e.ForEach("div.sg-content-grid > table.sg-asp-table > tbody > tr.sg-asp-table-data-row > td > a", func(_ int, el *colly.HTMLElement) {
+		e.ForEach("div.sg-content-grid > table.sg-asp-table > tbody > tr.sg-asp-table-data-row", func(_ int, el *colly.HTMLElement) {
 			assignment := make([]string, 0)
+
+			selection := el.DOM
+			childNodes := selection.Children().Nodes
 			
-			assignmentsText := strings.TrimSpace(el.Text)
+			assignmentsText := strings.TrimSpace(selection.FindNodes(childNodes[3].ChildText("a")))
 			
 			assignment = append(assignment, assignmentsText)
 			
