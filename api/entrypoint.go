@@ -284,11 +284,24 @@ func getAssignments(c *gin.Context) {
 			selection := el.DOM
 			childNodes := selection.Children().Nodes
 
-			assignmentTextNode := selection.FindNodes(childNodes[2])
-			assignmentTextChildren := assignmentTextNode.Children().Nodes
-			assignmentsText := strings.TrimSpace(assignmentTextNode.FindNodes(assignmentTextChildren[0]).Text())
+			//AssignmentName
+			assignmentNameNode := selection.FindNodes(childNodes[2])
+			assignmentNameNodeChildren := assignmentNameNode.Children().Nodes
+			assignmentName := strings.TrimSpace(assignmentNameNode.FindNodes(assignmentNameNodeChildren[0]).Text())
+			//Date
+			date := strings.TrimSpace(selection.FindNodes(childNodes[0]).Text())
+			//Type
+			assType := strings.TrimSpace(selection.FindNodes(childNodes[3]).Text())
+			//Grade
+			grade := strings.TrimSpace(selection.FindNodes(childNodes[4]).Text())
+			//Max Grade
+			maxGrade := strings.TrimSpace(selection.FindNodes(childNodes[5]).Text())
 			
-			assignment = append(assignment, assignmentsText)
+			assignment = append(assignment, assignmentName)
+			assignment = append(assignment, date)
+			assignment = append(assignment, assType)
+			assignment = append(assignment, grade)
+			assignment = append(assignment, maxGrade)
 			
 			currAssignments = append(currAssignments, assignment)
 		})
