@@ -316,7 +316,7 @@ func getAssignments(c *gin.Context) {
 			//childNodes := selection.Children().Nodes
 
 			//percentage := (strings.TrimSpace(selection.FindNodes(childNodes[0]).Text()) + " : " + strings.TrimSpace(selection.FindNodes(childNodes[4]).Text()))
-			percentages = append(percentages, el.Text)
+			percentages = append(percentages, strings.TrimSpace(el.Text))
 		})
 		assignmentPercentages = append(assignmentPercentages, percentages)
 	})
