@@ -310,8 +310,8 @@ func getAssignments(c *gin.Context) {
 		assignments = append(assignments, currAssignments)
 
 		percentages := make([]string, 0)
-		//> div.sg-view-quick > table.sg-asp-table > tr.sg-asp-table-data-row
-		e.ForEach("div.sg-content-grid > div.sg-asp-table-group > span.LabelCatogery > div.sg-view-quick", func(_ int, el *colly.HTMLElement) {
+		// > tr.sg-asp-table-data-row
+		e.ForEach("div.sg-content-grid > div.sg-asp-table-group > span.LabelCatogery > div.sg-view-quick > table.sg-asp-table", func(_ int, el *colly.HTMLElement) {
 			//selection := el.DOM
 			//childNodes := selection.Children().Nodes
 
