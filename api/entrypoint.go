@@ -317,10 +317,10 @@ func getAssignments(c *gin.Context) {
 
 			//percentage := (strings.TrimSpace(selection.FindNodes(childNodes[0]).Text()) + " : " + strings.TrimSpace(selection.FindNodes(childNodes[4]).Text()))
 			el.ForEach("tr.sg-asp-table-data-row", func(_ int, elem *colly.HTMLElement) {
-				selection := elem.DOM
-				childNodes := selection.Children().Nodes
+				elemSelection := elem.DOM
+				elemChildNodes := elemSelection.Children().Nodes
 
-				percentage := (strings.TrimSpace(selection.FindNodes(childNodes[0]).Text()) + " : " + strings.TrimSpace(selection.FindNodes(childNodes[4]).Text()))
+				percentage := strings.TrimSpace(elemSelection.FindNodes(elemChildNodes[0]).Text())
 				percentages = append(percentages, percentage))
 			})
 		})
