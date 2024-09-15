@@ -311,7 +311,7 @@ func getAssignments(c *gin.Context) {
 
 		percentages := make([]string, 0)
 		//> div.sg-view-quick > table.sg-asp-table > tr.sg-asp-table-data-row
-		e.ForEach("div.sg-content-grid > div.sg-asp-table-group > span.LabelCatogery", func(_ int, el *colly.HTMLElement) {
+		e.ForEach("div.sg-content-grid > div.sg-asp-table-group > span.LabelCatogery > div.sg-view-quick", func(_ int, el *colly.HTMLElement) {
 			//selection := el.DOM
 			//childNodes := selection.Children().Nodes
 
