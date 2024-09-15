@@ -255,6 +255,8 @@ func getAssignments(c *gin.Context) {
 	assignments := make([][][]string, 0)
 	currAssignments := make([][]string, 0)
 
+	assignmentPercentages := make([][]string, 0)
+
 	collector.OnHTML("div.AssignmentClass", func(e *colly.HTMLElement) {
 		/*if len(e.ChildText("div.sg-header")) == 0 {
 			classArr := strings.Split(strings.Join(strings.Fields(e.DOM.Find("a.sg-header-heading").Text()), " "), " ")
@@ -306,6 +308,16 @@ func getAssignments(c *gin.Context) {
 			currAssignments = append(currAssignments, assignment)
 		})
 		assignments = append(assignments, currAssignments)
+
+		percentages := make([]string, 0)
+		e.ForEach("div.sg-content-grid > table.sg-asp-table > div.sg-asp-table-group > span > div.sg-view-quick > table.sg-asp-table > tr.sg-asp-table-data-row", func(_ int, el *colly.HTMLElement) {
+			selection := el.DOM
+			childNodes := selection.Children().Nodes
+
+			percentage := (strings.TrimSpace(selection.FindNodes(childNodes[0]).Text()) + " : " + strings.TrimSpace(selection.FindNodes(childNodes[4]).Text()))
+			percentages = append(percentages, percentage)
+		})
+		assignmentPercentages = append(assignmentPercentages, percentages)
 	})
 
 	collector.OnScraped(func(r *colly.Response) {
@@ -315,9 +327,11 @@ func getAssignments(c *gin.Context) {
 			
 			average := averages[i]
 			assignmentsArr := assignments[i]
+			assignmentPercentegesArr := assignmentPercentages[i]
 
 			retInside.Set("average", average)
 			retInside.Set("assignments", assignmentsArr)
+			retInside.Set("percentages", assignmentPercentegesArr)
 			
 			ret.Set(classes[i], retInside)
 		}
